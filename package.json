@@ -1,0 +1,19 @@
+{
+  "name": "client-my-flix",
+  "version": "1.0.0",
+  "description": "this is client side for my flix app.",
+  "main": "src/index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/YuhuiWu92/Client-my-flix.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/YuhuiWu92/Client-my-flix/issues"
+  },
+  "homepage": "https://github.com/YuhuiWu92/Client-my-flix#readme"
+}

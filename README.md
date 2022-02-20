@@ -1,2 +1,2 @@
 # Client-my-flix
-client side for my flix app.
+this is client side for my flix app.
