@@ -2,10 +2,10 @@
     "name": "client-my-flix",
     "version": "1.0.0",
     "description": "this is client side for my flix app.",
-    "default": "src/index.html",
+    "source": "src/index.html",
     "scripts": {
-        "dev": "parcel src/index.html",
-        "test": "echo \"Error: no test specified\" && exit 1"
+        "start": "parcel",
+        "build": "parcel build"
     },
     "repository": {
         "type": "git",
@@ -23,6 +23,8 @@
         "react-dom": "^17.0.2"
     },
     "devDependencies": {
-        "@parcel/transformer-sass": "^2.0.0-rc.0"
+        "@parcel/transformer-sass": "^2.2.1",
+        "parcel": "^2.2.1",
+        "process": "^0.11.10"
     }
 }
