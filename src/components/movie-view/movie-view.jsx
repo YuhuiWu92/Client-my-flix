@@ -1,10 +1,20 @@
 import React from "react";
+
 export class MovieView extends React.Component {
-  componentDidMount() {
-    document.addEventListener('keypress', event => {
-      console.log(event.key);
-    });
+
+  // uncommen this to check the key presses 
+  /*  
+  keypressCallback(event) {
+    console.log(event.key);
   }
+
+  componentDidMount() {
+    document.addEventListener('keypress', this.keypressCallback);
+  }
+
+  componentWillUnmount() {
+    document.removeEventListener('keypress', this.keypressCallback);
+  } */
     render(){
         const { movie } = this.props;
         return(
