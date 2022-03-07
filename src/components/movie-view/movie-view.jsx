@@ -5,26 +5,26 @@ import "./movie-view.scss";
 
 export class MovieView extends React.Component {
   // uncommen this to check the key presses
-  /*  
+
   keypressCallback(event) {
     console.log(event.key);
   }
 
   componentDidMount() {
-    document.addEventListener('keypress', this.keypressCallback);
+    document.addEventListener("keypress", this.keypressCallback);
   }
 
   componentWillUnmount() {
-    document.removeEventListener('keypress', this.keypressCallback);
-  } */
+    document.removeEventListener("keypress", this.keypressCallback);
+  }
   render() {
     const { movie, onBackClick } = this.props;
-    if (!movies) return null;
+    //if (!movies) return null;
 
     return (
       <div className="movie-view">
         <div className="movie-poster">
-          <img src={movie.ImagePath} />
+          <img src={movie.ImageUrl} />
         </div>
         <div className="movie-title">
           <span className="label">Title: </span>
