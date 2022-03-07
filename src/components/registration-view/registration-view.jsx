@@ -31,6 +31,7 @@ export function RegistrationView(props) {
                     <Form.Label>Username:</Form.Label>
                     <Form.Control
                       type="text"
+                      required
                       placeholder="Enter Username"
                       value={values.username}
                       onChange={(e) => setUsername(e.target.value)}
@@ -43,6 +44,8 @@ export function RegistrationView(props) {
                       type="password"
                       placeholder="Password"
                       value={values.password}
+                      minLength="8"
+                      required
                       onChange={(e) => setPassword(e.target.value)}
                     />
                   </Form.Group>
@@ -52,6 +55,7 @@ export function RegistrationView(props) {
                     <Form.Control
                       type="email"
                       placeholder="Enter email"
+                      required
                       value={values.email}
                       onChange={(e) => setEmail(e.target.value)}
                     />
@@ -65,6 +69,7 @@ export function RegistrationView(props) {
                     <Form.Control
                       type="date"
                       placeholder="Enter birthday"
+                      required
                       value={values.birthday}
                       onChange={(e) => setBirthday(e.target.value)}
                     />
