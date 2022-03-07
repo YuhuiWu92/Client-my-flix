@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
+import axios from "axios";
+
 import {
   Form,
   Button,
@@ -16,11 +18,11 @@ export function RegistrationView(props) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
-  const [birthday, setBirthday] = useState("");
+  //const [birthday, setBirthday] = useState("");
 
   const handleRegister = (e) => {
     e.preventDefault();
-    console.log(username, password, email, birthday);
+    console.log(username, password, email);
     props.onRegister(username);
   };
 
@@ -71,11 +73,16 @@ export function RegistrationView(props) {
                   </Form.Group>
 
                   <Button
+                    className="signUpButton"
                     variant="success"
                     type="submit"
                     onClick={handleRegister}
                   >
                     Sign up
+                  </Button>
+
+                  <Button variant="primary" type="button">
+                    go to Login
                   </Button>
                 </Form>
               </Card.Body>
