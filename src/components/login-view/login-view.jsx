@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
+import axios from "axios";
 
 export function LoginView(props) {
   const [username, setUsername] = useState("");
@@ -23,7 +24,7 @@ export function LoginView(props) {
       .catch((e) => {
         console.log("no such user");
       });
-    /* then call props.onLoggedIn(username) */
+    //then call props.onLoggedIn(username)
     props.onLoggedIn(username);
   };
 
@@ -51,7 +52,8 @@ export function LoginView(props) {
         Submit
       </Button>
 
-      {/* a button or a link for unregistered users somewhere in your main view or login view. */}
+      {/*     a button or a link for unregistered users somewhere in your main view or login view.
+       */}
       <Button variant="success" type="button">
         go to register
       </Button>

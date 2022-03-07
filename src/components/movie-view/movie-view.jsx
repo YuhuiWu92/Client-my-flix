@@ -18,7 +18,7 @@ export class MovieView extends React.Component {
     document.removeEventListener('keypress', this.keypressCallback);
   } */
   render() {
-    const { movies } = this.props;
+    const { movie, onBackClick } = this.props;
     if (!movies) return null;
 
     return (
