@@ -1,16 +1,22 @@
 import React, { useState } from "react";
-import propTypes from "prop-types";
-import { Form, Button, Card, CardGroup, Container, Col } from "react-bootstrap";
+import PropTypes from "prop-types";
+import {
+  Form,
+  Button,
+  Card,
+  CardGroup,
+  Container,
+  Row,
+  Col,
+} from "react-bootstrap";
 
 import "./registration-view.scss";
 
 export function RegistrationView(props) {
-  const [values, setValues] = useState({
-    username: "",
-    password: "",
-    email: "",
-    birthday: "",
-  });
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState("");
+  const [birthday, setBirthday] = useState("");
 
   const handleRegister = (e) => {
     e.preventDefault();
@@ -32,8 +38,8 @@ export function RegistrationView(props) {
                     <Form.Control
                       type="text"
                       required
+                      value={username}
                       placeholder="Enter Username"
-                      value={values.username}
                       onChange={(e) => setUsername(e.target.value)}
                     />
                   </Form.Group>
@@ -43,7 +49,7 @@ export function RegistrationView(props) {
                     <Form.Control
                       type="password"
                       placeholder="Password"
-                      value={values.password}
+                      value={password}
                       minLength="8"
                       required
                       onChange={(e) => setPassword(e.target.value)}
@@ -56,7 +62,7 @@ export function RegistrationView(props) {
                       type="email"
                       placeholder="Enter email"
                       required
-                      value={values.email}
+                      value={email}
                       onChange={(e) => setEmail(e.target.value)}
                     />
                     <Form.Text className="text-muted">
@@ -64,21 +70,10 @@ export function RegistrationView(props) {
                     </Form.Text>
                   </Form.Group>
 
-                  <Form.Group className="mb-3" controlId="formBasicBirthday">
-                    <Form.Label>Birthday:</Form.Label>
-                    <Form.Control
-                      type="date"
-                      placeholder="Enter birthday"
-                      required
-                      value={values.birthday}
-                      onChange={(e) => setBirthday(e.target.value)}
-                    />
-                  </Form.Group>
-
                   <Button
                     variant="success"
                     type="submit"
-                    onClick={handleRegistration}
+                    onClick={handleRegister}
                   >
                     Sign up
                   </Button>

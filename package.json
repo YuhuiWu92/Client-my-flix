@@ -4,7 +4,7 @@
     "description": "this is client side for my flix app.",
     "source": "src/index.html",
     "scripts": {
-        "start": "parcel",
+        "start": "parcel src/index.html",
         "build": "parcel build"
     },
     "repository": {
@@ -20,14 +20,14 @@
     "homepage": "https://github.com/YuhuiWu92/Client-my-flix#readme",
     "dependencies": {
         "axios": "^0.26.0",
+        "parcel": "^2.3.2",
         "prop-types": "^15.8.1",
         "react": "^17.0.2",
         "react-bootstrap": "^2.2.0",
         "react-dom": "^17.0.2"
     },
     "devDependencies": {
-        "@parcel/transformer-sass": "^2.2.1",
-        "parcel": "^2.2.1",
+        "@parcel/transformer-sass": "^2.3.2",
         "process": "^0.11.10"
     }
 }
