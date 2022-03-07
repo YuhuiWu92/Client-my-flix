@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { Container,Row, Col, Button,Card,CardGroup } from "react-bootstrap";
+import { Container, Row, Col, Button, Card, CardGroup } from "react-bootstrap";
 import "./movie-view.scss";
 
 export class MovieView extends React.Component {
@@ -22,22 +22,6 @@ export class MovieView extends React.Component {
     if (!movies) return null;
 
     return (
-      <Container fluid style={{paddingTop:'0.75rem'}}>
-        <Row>
-          <CardGroup>
-
-          </CardGroup>
-        </Row>
-      </Container>
-
-<Card style={{ width: "18rem" }}>
-<Card.Img variant="top" src={movie.ImagePath} />
-<Card.Body>
-  <Card.Title>{movie.Title}</Card.Title>
-  <Card.Text>{movie.Description}</Card.Text>
-  
-</Card.Body>
-</Card>
       <div className="movie-view">
         <div className="movie-poster">
           <img src={movie.ImagePath} />
