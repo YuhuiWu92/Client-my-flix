@@ -1,11 +1,12 @@
 import React from "react";
 import axios from "axios";
-import { Row, Col } from "react-bootstrap";
+import { BrowserRouter as Router, Route } from "react-router-dom";
 
 import { MovieCard } from "../movie-card/movie-card";
 import { MovieView } from "../movie-view/movie-view";
 import { LoginView } from "../login-view/login-view";
 import { RegistrationView } from "../registration-view/registration-view";
+import { Row, Col } from "react-bootstrap";
 
 export default class MainView extends React.Component {
   constructor() {
@@ -32,12 +33,23 @@ export default class MainView extends React.Component {
         console.log("here is error");
       });
   }
+
+  componentDidMount() {
+    let accessToken = localStorage.getItem("token");
+    if (accessToken !== null) {
+      this.setState({
+        user: localStorage.getItem("user"),
+      });
+      this.getMovies(accessToken);
+    }
+  }
+
   /*When a movie is clicked, this function is invoked and updates the state of the `selectedMovie` *property to that movie*/
-  setSelectedMovie(newSelectedMovie) {
+  /* setSelectedMovie(newSelectedMovie) {
     this.setState({
       selectedMovie: newSelectedMovie,
     });
-  }
+  } */
   onLoggedIn(authData) {
     console.log(authData);
     this.setState({
@@ -49,59 +61,54 @@ export default class MainView extends React.Component {
     this.getMovies(authData.token);
   }
   /* When a user successfully logs in, this function updates the `user` property in state to that *particular user*/
-  onRegister(newUser) {
+  /* onRegister(newUser) {
     this.setState({
       newUser,
     });
-  }
-  componentDidMount() {
-    let accessToken = localStorage.getItem("token");
-    if (accessToken !== null) {
-      this.setState({
-        user: localStorage.getItem("user"),
-      });
-      this.getMovies(accessToken);
-    }
-  }
+  } */
 
   render() {
-    const { movies, selectedMovie, user, newUser } = this.state;
-    if (!newUser)
-      return (
-        <RegistrationView onRegister={(newUser) => this.onRegister(newUser)} />
-      );
+    const { movies, user } = this.state;
+
     /* If there is no user, the LoginView is rendered. If there is a user logged in, the user details are *passed as a prop to the LoginView*/
-    if (!user)
-      return <LoginView onLoggedIn={(user) => this.onLoggedIn(user)} />;
+    if (!user) return;
+    <Row>
+      <Col>
+        <LoginView onLoggedIn={(user) => this.onLoggedIn(user)} />;
+      </Col>
+    </Row>;
 
     // Before the movies have been loaded
     if (movies.length === 0) return <div className="main-view" />;
 
     return (
-      <Row className="main-view justify-content-md-center">
-        {selectedMovie ? (
-          <Col md={8}>
-            <MovieView
-              movie={selectedMovie}
-              onBackClick={(newSelectedMovie) => {
-                this.setSelectedMovie(newSelectedMovie);
-              }}
-            />
-          </Col>
-        ) : (
-          movies.map((movie) => (
-            <Col md={3}>
-              <MovieCard
-                key={movie._id}
-                movie={movie}
-                onMovieClick={(newSelectedMovie) => {
-                  this.setSelectedMovie(newSelectedMovie);
-                }}
-              />
-            </Col>
-          ))
-        )}
-      </Row>
+      <Router>
+        <Row className="main-view justify-content-md-center">
+          <Route
+            exact
+            path="/"
+            render={() => {
+              return movies.map((m) => (
+                <Col md={3} key={m._id}>
+                  <MovieCard movie={m} />
+                </Col>
+              ));
+            }}
+          />
+          <Route
+            path="/movies/:movieId"
+            render={({ match }) => {
+              return (
+                <Col md={8}>
+                  <MovieView
+                    movie={movies.find((m) => m._id === match.params.movieId)}
+                  />
+                </Col>
+              );
+            }}
+          />
+        </Row>
+      </Router>
     );
   }
 }
