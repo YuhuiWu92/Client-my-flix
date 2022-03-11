@@ -22956,7 +22956,7 @@ class MainView extends _reactDefault.default.Component {
                             }, void 0, false, void 0, void 0));
                             return(/*#__PURE__*/ _jsxDevRuntime.jsxDEV(_reactBootstrap.Col, {
                                 md: 8,
-                                children: /*#__PURE__*/ _jsxDevRuntime.jsxDEV(GenresView, {
+                                children: /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_genreView.GenreView, {
                                     genre: movies.find((m)=>m.Genre.Name === match.params.name
                                     ).Genre,
                                     onBackClick: ()=>history.goBack()
@@ -24568,7 +24568,6 @@ var _reactRouterDom = require("react-router-dom");
 class MovieCard extends _reactDefault.default.Component {
     render() {
         const { movie  } = this.props;
-        //movie.ImagePath = "";
         return(/*#__PURE__*/ _jsxDevRuntime.jsxDEV(_reactBootstrap.Card, {
             children: [
                 /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_reactBootstrap.Card.Img, {
@@ -24576,7 +24575,7 @@ class MovieCard extends _reactDefault.default.Component {
                     src: movie.ImagePath
                 }, void 0, false, {
                     fileName: "src/components/movie-card/movie-card.jsx",
-                    lineNumber: 14,
+                    lineNumber: 12,
                     columnNumber: 9
                 }, this),
                 /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_reactBootstrap.Card.Body, {
@@ -24585,14 +24584,14 @@ class MovieCard extends _reactDefault.default.Component {
                             children: movie.Title
                         }, void 0, false, {
                             fileName: "src/components/movie-card/movie-card.jsx",
-                            lineNumber: 16,
+                            lineNumber: 14,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_reactBootstrap.Card.Text, {
                             children: movie.Description
                         }, void 0, false, {
                             fileName: "src/components/movie-card/movie-card.jsx",
-                            lineNumber: 17,
+                            lineNumber: 15,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_reactRouterDom.Link, {
@@ -24602,24 +24601,24 @@ class MovieCard extends _reactDefault.default.Component {
                                 children: "Open"
                             }, void 0, false, {
                                 fileName: "src/components/movie-card/movie-card.jsx",
-                                lineNumber: 19,
+                                lineNumber: 17,
                                 columnNumber: 13
                             }, this)
                         }, void 0, false, {
                             fileName: "src/components/movie-card/movie-card.jsx",
-                            lineNumber: 18,
+                            lineNumber: 16,
                             columnNumber: 11
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "src/components/movie-card/movie-card.jsx",
-                    lineNumber: 15,
+                    lineNumber: 13,
                     columnNumber: 9
                 }, this)
             ]
         }, void 0, true, {
             fileName: "src/components/movie-card/movie-card.jsx",
-            lineNumber: 13,
+            lineNumber: 11,
             columnNumber: 7
         }, this));
     }
@@ -24635,7 +24634,7 @@ MovieCard.propTypes = {
         Director: _propTypesDefault.default.shape({
             Name: _propTypesDefault.default.string.isRequired
         }),
-        ImageUrl: _propTypesDefault.default.string.isRequired
+        ImagePath: _propTypesDefault.default.string.isRequired
     }).isRequired
 };
 
@@ -33732,12 +33731,12 @@ class MovieView extends _reactDefault.default.Component {
                                         children: movie.Genre.Name
                                     }, void 0, false, {
                                         fileName: "src/components/movie-view/movie-view.jsx",
-                                        lineNumber: 40,
+                                        lineNumber: 39,
                                         columnNumber: 17
                                     }, this)
                                 }, void 0, false, {
                                     fileName: "src/components/movie-view/movie-view.jsx",
-                                    lineNumber: 39,
+                                    lineNumber: 38,
                                     columnNumber: 15
                                 }, this)
                             ]
@@ -33754,7 +33753,7 @@ class MovieView extends _reactDefault.default.Component {
                                     children: "Director: "
                                 }, void 0, false, {
                                     fileName: "src/components/movie-view/movie-view.jsx",
-                                    lineNumber: 44,
+                                    lineNumber: 43,
                                     columnNumber: 15
                                 }, this),
                                 /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_reactRouterDom.Link, {
@@ -33764,28 +33763,28 @@ class MovieView extends _reactDefault.default.Component {
                                         children: movie.Director.Name
                                     }, void 0, false, {
                                         fileName: "src/components/movie-view/movie-view.jsx",
-                                        lineNumber: 47,
+                                        lineNumber: 45,
                                         columnNumber: 17
                                     }, this)
                                 }, void 0, false, {
                                     fileName: "src/components/movie-view/movie-view.jsx",
-                                    lineNumber: 46,
+                                    lineNumber: 44,
                                     columnNumber: 15
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "src/components/movie-view/movie-view.jsx",
-                            lineNumber: 43,
+                            lineNumber: 42,
                             columnNumber: 13
                         }, this),
                         /*#__PURE__*/ _jsxDevRuntime.jsxDEV("button", {
                             variant: "outline-light",
-                            onClick: ()=>onBackClick(null)
+                            onClick: ()=>onBackClick()
                             ,
                             children: "Back"
                         }, void 0, false, {
                             fileName: "src/components/movie-view/movie-view.jsx",
-                            lineNumber: 50,
+                            lineNumber: 48,
                             columnNumber: 13
                         }, this)
                     ]
@@ -33816,7 +33815,7 @@ MovieView.propTypes = {
         Director: _propTypesDefault.default.shape({
             Name: _propTypesDefault.default.string.isRequired
         }),
-        ImageUrl: _propTypesDefault.default.string.isRequired
+        ImagePath: _propTypesDefault.default.string.isRequired
     }).isRequired
 };
 
@@ -34307,28 +34306,39 @@ var _reactRouterDom = require("react-router-dom");
 class DirectorView extends _react.Component {
     render() {
         const { Name , Bio , Birthday  } = this.props.director;
-        console.dir(this.props);
+        const { onBackClick  } = this.props;
+        //console.dir(this.props);
         return(/*#__PURE__*/ _jsxDevRuntime.jsxDEV(_jsxDevRuntime.Fragment, {
             children: [
                 /*#__PURE__*/ _jsxDevRuntime.jsxDEV("h2", {
                     children: Name
                 }, void 0, false, {
                     fileName: "src/components/director-view/director-view.jsx",
-                    lineNumber: 10,
+                    lineNumber: 12,
                     columnNumber: 9
                 }, this),
                 /*#__PURE__*/ _jsxDevRuntime.jsxDEV("p", {
                     children: Bio
                 }, void 0, false, {
                     fileName: "src/components/director-view/director-view.jsx",
-                    lineNumber: 11,
+                    lineNumber: 13,
                     columnNumber: 9
                 }, this),
                 /*#__PURE__*/ _jsxDevRuntime.jsxDEV("p", {
                     children: new Date(Birthday).toLocaleDateString("en-US")
                 }, void 0, false, {
                     fileName: "src/components/director-view/director-view.jsx",
-                    lineNumber: 12,
+                    lineNumber: 14,
+                    columnNumber: 9
+                }, this),
+                /*#__PURE__*/ _jsxDevRuntime.jsxDEV("button", {
+                    variant: "outline-light",
+                    onClick: ()=>onBackClick()
+                    ,
+                    children: "Back"
+                }, void 0, false, {
+                    fileName: "src/components/director-view/director-view.jsx",
+                    lineNumber: 15,
                     columnNumber: 9
                 }, this)
             ]
@@ -34355,32 +34365,49 @@ parcelHelpers.export(exports, "GenreView", ()=>GenreView
 var _jsxDevRuntime = require("react/jsx-dev-runtime");
 var _react = require("react");
 var _reactDefault = parcelHelpers.interopDefault(_react);
+var _reactRouterDom = require("react-router-dom");
 class GenreView extends _react.Component {
     render() {
-        return(/*#__PURE__*/ _jsxDevRuntime.jsxDEV("div", {
-            children: [
-                "GenreView",
-                /*#__PURE__*/ _jsxDevRuntime.jsxDEV(Link, {
-                    to: `/directors/${movie.Director.Name}`,
-                    children: /*#__PURE__*/ _jsxDevRuntime.jsxDEV(Button, {
-                        variant: "link",
-                        children: "Director"
+        const { Name , Description  } = this.props.genre;
+        const { onBackClick  } = this.props;
+        console.dir(this.props);
+        return(/*#__PURE__*/ _jsxDevRuntime.jsxDEV(_jsxDevRuntime.Fragment, {
+            children: /*#__PURE__*/ _jsxDevRuntime.jsxDEV("div", {
+                children: [
+                    /*#__PURE__*/ _jsxDevRuntime.jsxDEV("h2", {
+                        children: [
+                            " ",
+                            Name
+                        ]
+                    }, void 0, true, {
+                        fileName: "src/components/genre-view/genre-view.jsx",
+                        lineNumber: 12,
+                        columnNumber: 11
+                    }, this),
+                    /*#__PURE__*/ _jsxDevRuntime.jsxDEV("p", {
+                        children: Description
                     }, void 0, false, {
                         fileName: "src/components/genre-view/genre-view.jsx",
-                        lineNumber: 9,
+                        lineNumber: 13,
+                        columnNumber: 11
+                    }, this),
+                    /*#__PURE__*/ _jsxDevRuntime.jsxDEV("button", {
+                        variant: "outline-light",
+                        onClick: ()=>onBackClick()
+                        ,
+                        children: "Back"
+                    }, void 0, false, {
+                        fileName: "src/components/genre-view/genre-view.jsx",
+                        lineNumber: 14,
                         columnNumber: 11
                     }, this)
-                }, void 0, false, {
-                    fileName: "src/components/genre-view/genre-view.jsx",
-                    lineNumber: 8,
-                    columnNumber: 9
-                }, this)
-            ]
-        }, void 0, true, {
-            fileName: "src/components/genre-view/genre-view.jsx",
-            lineNumber: 6,
-            columnNumber: 7
-        }, this));
+                ]
+            }, void 0, true, {
+                fileName: "src/components/genre-view/genre-view.jsx",
+                lineNumber: 11,
+                columnNumber: 9
+            }, this)
+        }, void 0, false));
     }
 }
 
@@ -34389,7 +34416,7 @@ class GenreView extends _react.Component {
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"bNPgg":[function(require,module,exports) {
+},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru","react-router-dom":"cHIiW"}],"bNPgg":[function(require,module,exports) {
 var $parcel$ReactRefreshHelpers$8fd2 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
 var prevRefreshSig = window.$RefreshSig$;
@@ -34398,13 +34425,13 @@ $parcel$ReactRefreshHelpers$8fd2.prelude(module);
 try {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "Navbar", ()=>Navbar
+parcelHelpers.export(exports, "Menubar", ()=>Menubar
 );
 var _jsxDevRuntime = require("react/jsx-dev-runtime");
 var _react = require("react");
 var _reactDefault = parcelHelpers.interopDefault(_react);
 var _reactBootstrap = require("react-bootstrap");
-function Navbar({ user  }) {
+function Menubar({ user  }) {
     const onLoggedOut = ()=>{
         localStorage.clear();
         window.open("/", "_self");
@@ -34498,9 +34525,9 @@ function Navbar({ user  }) {
         columnNumber: 5
     }, this));
 }
-_c = _reactBootstrap.Navbar;
+_c = Menubar;
 var _c;
-$RefreshReg$(_c, "Navbar");
+$RefreshReg$(_c, "Menubar");
 
   $parcel$ReactRefreshHelpers$8fd2.postlude(module);
 } finally {

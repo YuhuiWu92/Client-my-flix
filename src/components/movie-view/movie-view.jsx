@@ -35,19 +35,17 @@ export class MovieView extends React.Component {
             </div>
             <div className="movie-genre">
               <span className="label">Genre: </span>
-
               <Link to={`/genres/${movie.Genre.Name}`}>
                 <Button variant="link">{movie.Genre.Name}</Button>
               </Link>
             </div>
             <div className="movie-director">
               <span className="label">Director: </span>
-
               <Link to={`/directors/${movie.Director.Name}`}>
                 <Button variant="link">{movie.Director.Name}</Button>
               </Link>
             </div>
-            <button variant="outline-light" onClick={() => onBackClick(null)}>
+            <button variant="outline-light" onClick={() => onBackClick()}>
               Back
             </button>
           </Col>
@@ -67,6 +65,6 @@ MovieView.propTypes = {
     Director: PropTypes.shape({
       Name: PropTypes.string.isRequired,
     }),
-    ImageUrl: PropTypes.string.isRequired,
+    ImagePath: PropTypes.string.isRequired,
   }).isRequired,
 };
