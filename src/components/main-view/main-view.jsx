@@ -5,10 +5,11 @@ import { BrowserRouter as Router, Route } from "react-router-dom";
 import { MovieCard } from "../movie-card/movie-card";
 import { MovieView } from "../movie-view/movie-view";
 import { LoginView } from "../login-view/login-view";
+import { Menubar } from "../navbar/navbar";
 import { DirectorView } from "../director-view/director-view";
 import { GenreView } from "../genre-view/genre-view";
 import { RegistrationView } from "../registration-view/registration-view";
-import { Row, Col } from "react-bootstrap";
+import { Row, Col, Container } from "react-bootstrap";
 
 export default class MainView extends React.Component {
   constructor() {
@@ -17,21 +18,6 @@ export default class MainView extends React.Component {
       movies: [],
       user: null,
     };
-  }
-  getMovies(token) {
-    axios
-      .get("https://my-film-flix.herokuapp.com/movies", {
-        headers: { Authorization: `Bearer ${token}` },
-      })
-      .then((response) => {
-        // Assign the result to the state
-        this.setState({
-          movies: response.data,
-        });
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
   }
 
   componentDidMount() {
@@ -67,9 +53,33 @@ export default class MainView extends React.Component {
       user: null,
     });
   }
-
+  getMovies(token) {
+    axios
+      .get("https://my-film-flix.herokuapp.com/movies", {
+        headers: { Authorization: `Bearer ${token}` },
+      })
+      .then((response) => {
+        // Assign the result to the state
+        this.setState({
+          movies: response.data,
+        });
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  }
   render() {
     const { movies, user } = this.state;
+
+    if (!user)
+      return (
+        <Row>
+          <Col>
+            <LoginView onLoggedIn={(user) => this.onLoggedIn(user)} />
+          </Col>
+        </Row>
+      );
+    if (movies.length === 0) return <div className="main-view" />;
 
     return (
       <Router>
@@ -78,14 +88,6 @@ export default class MainView extends React.Component {
             exact
             path="/"
             render={() => {
-              if (!user)
-                return (
-                  <Col>
-                    <LoginView onLoggedIn={(user) => this.onLoggedIn(user)} />
-                  </Col>
-                );
-              if (movies.length === 0) return <div className="main-view" />;
-
               return movies.map((m) => (
                 <Col md={3} key={m._id}>
                   <MovieCard movie={m} />
@@ -93,13 +95,15 @@ export default class MainView extends React.Component {
               ));
             }}
           />
+
           <Route
             path="/movies/:movieId"
-            render={({ match }) => {
+            render={({ match, history }) => {
               return (
                 <Col md={8}>
                   <MovieView
                     movie={movies.find((m) => m._id === match.params.movieId)}
+                    onBackClick={() => history.goBack()}
                   />
                 </Col>
               );
@@ -108,7 +112,7 @@ export default class MainView extends React.Component {
 
           <Route
             path="/directors/:name"
-            render={({ match }) => {
+            render={({ match, history }) => {
               if (movies.length === 0) return <div className="main-view" />;
               return (
                 <Col md={8}>
@@ -117,6 +121,25 @@ export default class MainView extends React.Component {
                       movies.find((m) => m.Director.Name === match.params.name)
                         .Director
                     }
+                    onBackClick={() => history.goBack()}
+                  />
+                </Col>
+              );
+            }}
+          />
+
+          <Route
+            path="/genres/:name"
+            render={({ match, history }) => {
+              if (movies.length === 0) return <div className="main-view" />;
+              return (
+                <Col md={8}>
+                  <GenresView
+                    genre={
+                      movies.find((m) => m.Genre.Name === match.params.name)
+                        .Genre
+                    }
+                    onBackClick={() => history.goBack()}
                   />
                 </Col>
               );

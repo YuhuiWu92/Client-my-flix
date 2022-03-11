@@ -1,9 +1,14 @@
-import React, { Component } from 'react'
+import React, { Component } from "react";
 
-export class genre-view extends Component {
+export class GenreView extends Component {
   render() {
     return (
-      <div>genre-view</div>
-    )
+      <div>
+        GenreView
+        <Link to={`/directors/${movie.Director.Name}`}>
+          <Button variant="link">Director</Button>
+        </Link>
+      </div>
+    );
   }
 }

@@ -1,9 +1,8 @@
-import React, { Component } from 'react'
+import React, { Component } from "react";
+/* import { Navbar, Container, Nav, Button } from "react-bootstrap"; */
 
-export  class profile-view extends Component {
+export class ProfileView extends Component {
   render() {
-    return (
-      <div>profile-view</div>
-    )
+    return <div>ProfileView</div>;
   }
 }
