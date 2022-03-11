@@ -1,6 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { Container, Row, Col, Button, Card, CardGroup } from "react-bootstrap";
+import { Link } from "react-router-dom";
+
 import "./movie-view.scss";
 
 export class MovieView extends React.Component {
@@ -14,8 +16,7 @@ export class MovieView extends React.Component {
     document.removeEventListener("keypress", this.keypressCallback);
   }
   render() {
-    const { movie, onBackClick } = this.props;
-    //if (!movies) return null;
+    const { movie } = this.props;
 
     return (
       <div className="movie-view">
@@ -33,18 +34,18 @@ export class MovieView extends React.Component {
         <div className="movie-genre">
           <span className="label">Genre: </span>
           <span className="value">{movie.Genre.Name}</span>
+          <Link to={`/genres/${movie.Genre.Name}`}>
+            <Button variant="link">Genre</Button>
+          </Link>
         </div>
         <div className="movie-director">
           <span className="label">Director: </span>
           <span className="value">{movie.Director.Name}</span>
+          <Link to={`/directors/${movie.Director.Name}`}>
+            <Button variant="link">Director</Button>
+          </Link>
         </div>
-        <button
-          onClick={() => {
-            onBackClick(null);
-          }}
-        >
-          Back
-        </button>
+        <button>Back</button>
       </div>
     );
   }
@@ -60,7 +61,6 @@ MovieView.propTypes = {
     Director: PropTypes.shape({
       Name: PropTypes.string.isRequired,
     }),
-    //ImageUrl: PropTypes.string.isRequired,
+    ImageUrl: PropTypes.string.isRequired,
   }).isRequired,
-  //onMovieClick: PropTypes.func.isRequired,
 };

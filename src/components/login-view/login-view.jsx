@@ -47,7 +47,6 @@ export function LoginView(props) {
         .catch((e) => {
           console.log("no such user");
         });
-      /* then call props.onLoggedIn(username) */
     }
   };
 
