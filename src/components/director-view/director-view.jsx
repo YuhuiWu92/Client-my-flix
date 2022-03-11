@@ -1,15 +1,16 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 
 export class DirectorView extends Component {
   render() {
+    const { Name, Bio, Birthday } = this.props.director;
+    console.dir(this.props);
     return (
-      <div>
-        director-view
-        <Link to={`/genres/${movie.Genre.Name}`}>
-          <Button variant="link">Genre</Button>
-        </Link>
-        ;
-      </div>
+      <>
+        <h2>{Name}</h2>
+        <p>{Bio}</p>
+        <p>{new Date(Birthday).toLocaleDateString("en-US")}</p>
+      </>
     );
   }
 }
