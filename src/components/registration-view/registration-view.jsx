@@ -43,7 +43,7 @@ export function RegistrationView(props) {
     if (isReq) {
       /* Send a request to the server for authentication */
       axios
-        .post("https://my-film-flix.herokuapp.com/user", {
+        .post("https://my-film-flix.herokuapp.com/users", {
           Username: username,
           Password: password,
           Email: email,
@@ -52,16 +52,13 @@ export function RegistrationView(props) {
         .then((response) => {
           const data = response.data;
           console.log(data);
-          alert("Registration successful, go to login");
           window.open("/", "-self"); //the page will open on the same page.
         })
-        .catch((response) => {
-          console.log(response);
-          alert("unable to register");
+        .catch((e) => {
+          console.log("error register the user");
         });
     }
   };
-
   return (
     <Row className="mt-5">
       <Col md={12}>

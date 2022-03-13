@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import { Navbar, Container, Nav, Button } from "react-bootstrap";
 
 export function Menubar({ user }) {
@@ -11,8 +11,8 @@ export function Menubar({ user }) {
     if (typeof window == "undefined") {
       return false;
     }
-    if (localStorage.getElement("token")) {
-      return localStorage.getElement("token");
+    if (localStorage.getItem("token")) {
+      return localStorage.getItem("token");
     } else {
       return false;
     }

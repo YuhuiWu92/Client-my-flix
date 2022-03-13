@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import Form from "react-bootstrap/Form";
 import { Button, Form } from "react-bootstrap";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 export function LoginView(props) {
   const [username, setUsername] = useState("");
@@ -79,9 +79,10 @@ export function LoginView(props) {
         Submit
       </Button>
       {/* a button or a link for unregistered users somewhere in your main view or login view. */}
-      <Button variant="success" type="button">
+      {/* <Button variant="success" type="button">
         go to register
-      </Button>
+        <Link to="/register"></Link>
+      </Button> */}
     </Form>
   );
 }
