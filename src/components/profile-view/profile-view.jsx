@@ -1,8 +1,11 @@
-import React, { Component } from "react";
-/* import { Navbar, Container, Nav, Button } from "react-bootstrap"; */
+import React, { useState } from "react";
+import PropTypes from "prop-types";
+import axios from "axios";
+import { Form, Button, Container, Row, Col } from "react-bootstrap";
+import { Link } from "react-router-dom";
+import "./profile-view.scss";
 
-export class ProfileView extends Component {
-  render() {
-    return <div>ProfileView</div>;
-  }
+export function ProfileView(props) {
+  const [username, setUsername] = useState("");
+  return;
 }

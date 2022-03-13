@@ -9,6 +9,7 @@ import { Menubar } from "../navbar/navbar";
 import { DirectorView } from "../director-view/director-view";
 import { GenreView } from "../genre-view/genre-view";
 import { RegistrationView } from "../registration-view/registration-view";
+import { ProfileView } from "../profile-view/profile-view";
 import { Row, Col, Container } from "react-bootstrap";
 
 export default class MainView extends React.Component {
@@ -41,13 +42,13 @@ export default class MainView extends React.Component {
     this.getMovies(authData.token);
   }
 
-  onLoggedOut() {
+  /* onLoggedOut() {
     localStorage.removeItem("token");
     localStorage.removeItem("user");
     this.setState({
       user: null,
     });
-  }
+  } */
 
   getMovies(token) {
     axios

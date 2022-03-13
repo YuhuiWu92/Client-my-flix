@@ -17,6 +17,7 @@ export function Menubar({ user }) {
       return false;
     }
   };
+
   return (
     <Navbar bg="light" expand="lg" className="main-nav">
       <Container>
