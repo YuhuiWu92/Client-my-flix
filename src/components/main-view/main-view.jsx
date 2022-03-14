@@ -191,22 +191,6 @@ export default class MainView extends React.Component {
                 );
               }}
             />
-
-            {/* Route to update ProfileView */}
-            <Route
-              path={`/users/${user}`}
-              render={({ match, history }) => {
-                if (!user) return <Redirect to="/" />;
-                return (
-                  <Col>
-                    <UserUpdate
-                      user={user}
-                      onBackClick={() => history.goBack()}
-                    />
-                  </Col>
-                );
-              }}
-            />
           </Row>
         </Container>
       </Router>
