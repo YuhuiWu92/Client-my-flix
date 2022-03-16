@@ -17,7 +17,7 @@ export function RegistrationView(props) {
   const [emailErr, setEmailErr] = useState("");
   const [birthdayErr, setBirthdayErr] = useState("");
   // validate user inputs
-  const validateRegister = () => {
+  const validate = () => {
     let isReq = true;
     if (!username) {
       setUsernameErr("Username Required");
@@ -39,7 +39,7 @@ export function RegistrationView(props) {
 
   const handleRegister = (e) => {
     e.preventDefault();
-    const isReq = validateRegister();
+    const isReq = validate();
     if (isReq) {
       /* Send a request to the server for authentication */
       axios
@@ -52,9 +52,11 @@ export function RegistrationView(props) {
         .then((response) => {
           const data = response.data;
           console.log(data);
+          alert("Registration successful, please login!");
           window.open("/", "-self"); //the page will open on the same page.
         })
         .catch((e) => {
+          console.error(response);
           console.log("error register the user");
         });
     }
