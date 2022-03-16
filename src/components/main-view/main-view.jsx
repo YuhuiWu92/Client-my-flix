@@ -187,6 +187,7 @@ export default class MainView extends React.Component {
                     history={history}
                     movies={movies}
                     user={user === match.params.username}
+                    onBackClick={() => history.goBack()}
                   />
                 );
               }}
