@@ -21,19 +21,19 @@ export function Menubar({ user }) {
   return (
     <Navbar bg="light" expand="lg" className="main-nav">
       <Container>
-        <Navbar.Brand href="#home">My Flix</Navbar.Brand>
+        <Navbar.Brand href="/">My Flix</Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
-            {isAuth() && <Nav.Link href={` /users/&{user}`}>{user}</Nav.Link>}
+            {isAuth() && <Nav.Link href={`/users/${user}`}>{user}</Nav.Link>}
             {isAuth() && (
               <Button
                 variant="link"
                 onClick={() => {
-                  this.onLoggedOut();
+                  onLoggedOut();
                 }}
               >
-                Logout
+                Log out
               </Button>
             )}
             {!isAuth() && <Nav.Link href="/">Sign-in</Nav.Link>}

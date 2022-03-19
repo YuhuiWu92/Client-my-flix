@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-
+import { Button } from "react-bootstrap";
 export class DirectorView extends Component {
   render() {
     const { Name, Bio, Birthday } = this.props.director;
@@ -12,9 +12,9 @@ export class DirectorView extends Component {
         <h2>{Name}</h2>
         <p>{Bio}</p>
         <p>{new Date(Birthday).toLocaleDateString("en-US")}</p>
-        <button variant="outline-light" onClick={() => onBackClick()}>
+        <Button variant="outline-secondary" onClick={() => onBackClick()}>
           Back
-        </button>
+        </Button>
       </>
     );
   }

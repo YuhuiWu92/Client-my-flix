@@ -10,7 +10,7 @@ import { DirectorView } from "../director-view/director-view";
 import { GenreView } from "../genre-view/genre-view";
 import { RegistrationView } from "../registration-view/registration-view";
 import { ProfileView } from "../profile-view/profile-view";
-import { Row, Col, Container } from "react-bootstrap";
+import { Row, Col, Container, Button } from "react-bootstrap";
 
 export default class MainView extends React.Component {
   constructor() {
@@ -171,7 +171,6 @@ export default class MainView extends React.Component {
                 );
               }}
             />
-
             {/* Route to ProfileView */}
             <Route
               path={`/users/:username`}
@@ -186,7 +185,7 @@ export default class MainView extends React.Component {
                   <ProfileView
                     history={history}
                     movies={movies}
-                    user={user === match.params.username}
+                    user={user}
                     onBackClick={() => history.goBack()}
                   />
                 );

@@ -1,11 +1,8 @@
 import React from "react";
 import axios from "axios";
 import PropTypes from "prop-types";
-
 import "./profile-view.scss";
-
 import { MovieCard } from "../movie-card/movie-card";
-
 import {
   Form,
   Button,
@@ -15,7 +12,6 @@ import {
   Row,
   Col,
 } from "react-bootstrap";
-
 import { Link } from "react-router-dom";
 
 export class ProfileView extends React.Component {
@@ -107,19 +103,19 @@ export class ProfileView extends React.Component {
 
   // Delete A Favorite Movie From Users Favorite
 
-  onRemoveFavorite() {
+  onRemoveFavorite(movieId) {
     const username = localStorage.getItem("user");
     const token = localStorage.getItem("token");
 
     axios
       .delete(
-        `https://my-film-flix.herokuapp.com/users/${username}/movies/${movie._id}`,
+        `https://my-film-flix.herokuapp.com/users/${username}/movies/${movieId}`,
         {
           headers: { Authorization: `Bearer ${token}` },
         }
       )
       .then((response) => {
-        console.log(response);
+        alert("Movie successfully removed from Favorites");
         this.componentDidMount();
       })
       .catch(function (error) {
@@ -172,7 +168,7 @@ export class ProfileView extends React.Component {
     });
 
     return (
-      <Container className="profile-view">
+      <Container md={8} className="profile-view">
         <Container className="d-flex flex-row justify-content-end align-items-baseline">
           <div className="mr-2">
             <p>
@@ -189,38 +185,39 @@ export class ProfileView extends React.Component {
               this.onLoggedOut();
             }}
           >
-            Log off
+            Log out
+          </Button>
+          <Button
+            className="backProfileButton"
+            variant="secondary"
+            onClick={() => {
+              onBackClick();
+            }}
+          >
+            Back
           </Button>
         </Container>
-        <Button
-          className="backProfileButton"
-          variant="danger"
-          onClick={() => {
-            onBackClick();
-          }}
-        >
-          Back
-        </Button>
+
         <div className="profileInformation">
           <div className="profileContent">
             <h4>MY PROFILE</h4>
           </div>
           <div className="profileContent">
-            <h4>USERNAME</h4>
+            <h6>USERNAME</h6>
             <div>
               <p>{this.state.Username}</p>
             </div>
           </div>
           <div className="profileContent">
-            <h4>EMAIL</h4>
+            <h6>EMAIL</h6>
             <div>
               <p>{this.state.Email}</p>
             </div>
           </div>
           <div className="profileContent">
-            <h4>BIRTHDAY</h4>
+            <h6>BIRTHDAY</h6>
             <div>
-              <p>{this.state.Birthday}</p>
+              <p>{new Date(this.state.Birthday).toLocaleDateString("en-US")}</p>
             </div>
           </div>
           <div>
@@ -265,37 +262,39 @@ export class ProfileView extends React.Component {
                 onChange={(e) => this.setBirthday(e.target.value)}
               />
             </Form.Group>
-            <div className="marginSpacer">
+            <span className="marginSpacer">
               <Button variant="success" type="submit">
                 Update
               </Button>
-            </div>
+            </span>
+            <span className="marginSpacer">
+              <Button variant="danger" onClick={() => this.onDeleteUser()}>
+                Delete Profile
+              </Button>
+            </span>
           </Form>
-          <div className="marginSpacer">
-            <Button variant="danger" onClick={() => this.onDeleteUser()}>
-              Delete Profile
-            </Button>
-          </div>
         </div>
+
         <div className="favoriteMoviesView">
-          <h2>Favorite Movies</h2>
+          <h3>Favorite Movies</h3>
           <div className="responsiveMovieWrapper">
             {FavoriteMovies.map((movie) => (
-              <Row className="justify-content-center flex-wrap" key={movie._id}>
-                <Col className="m-2 d-flex flex-column">
-                  <div className="d-flex flex-column align-items-center favoriteListMovies">
-                    <MovieCard movie={movie} />
-                    <Button
-                      className="unfavoriteMovieButton"
-                      variant="danger"
-                      onClick={() => {
-                        this.onRemoveFavorite(movie._id);
-                      }}
-                    >
-                      Remove Favorite
-                    </Button>
-                  </div>
+              <Row className="xs={1} md={2} flex-wrap" key={movie._id}>
+                <Col className="flex-column">
+                  {/*  <div className="d-flex FavoriteMovies align-items-center favoriteListMovies"> */}
+                  <MovieCard movie={movie} />
+                  <Button
+                    className="unfavoriteMovieButton"
+                    variant="danger"
+                    onClick={() => {
+                      this.onRemoveFavorite(movie._id);
+                    }}
+                  >
+                    Remove Favorite
+                  </Button>
                 </Col>
+
+                {/*  </div> */}
               </Row>
             ))}
           </div>

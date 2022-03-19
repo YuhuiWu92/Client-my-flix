@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
+import { Button } from "react-bootstrap";
 
 export class GenreView extends Component {
   render() {
@@ -11,9 +12,9 @@ export class GenreView extends Component {
         <div>
           <h2> {Name}</h2>
           <p>{Description}</p>
-          <button variant="outline-light" onClick={() => onBackClick()}>
+          <Button variant="outline-secondary" onClick={() => onBackClick()}>
             Back
-          </button>
+          </Button>
         </div>
       </>
     );

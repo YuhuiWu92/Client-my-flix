@@ -53,7 +53,7 @@ export function RegistrationView(props) {
           const data = response.data;
           console.log(data);
           alert("Registration successful, please login!");
-          window.open("/", "-self"); //the page will open on the same page.
+          window.open("/"); //the page will open on the same page.
         })
         .catch((e) => {
           console.error(response);
