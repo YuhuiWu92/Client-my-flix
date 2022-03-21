@@ -4,14 +4,16 @@ export const SET_USER = 'SET_USER';
 
 
 export function setMovies(value) {
+  
   return { type: SET_MOVIES, value };
 }
 
 export function setFilter(value) {
-  //console.log(' setFilter action works well')
+  //console.log(' #setFilter action works well')
   return { type: SET_FILTER, value };
 }
 
 export function setUser(value) {
+  //console.log('SET_USER action triggered')
   return { type: SET_USER, value };
 }

@@ -23,8 +23,8 @@ function movies(state = [], action) {
   }
 }
 
-function user(state = [], action) {
-  console.log('@@@','set users works');
+function user(state = '', action) {
+  //console.log('@@@','set users works');
   switch (action.type) {
     case SET_USER:
       return action.value;
@@ -34,7 +34,9 @@ function user(state = [], action) {
 }
 
 const moviesApp=combineReducers (
-  {visibilityFilter,movies,user}
-  );
+  {visibilityFilter,
+    movies,
+    user
+  });
 
 export default moviesApp;

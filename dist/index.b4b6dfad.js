@@ -22837,7 +22837,6 @@ class MainView extends _reactDefault.default.Component {
         let accessToken = localStorage.getItem("token");
         if (accessToken !== null) {
             this.props.setUser(localStorage.getItem("user"));
-            //get violatest
             this.getMovies(accessToken);
         }
     }
@@ -22869,14 +22868,14 @@ class MainView extends _reactDefault.default.Component {
     render() {
         const { user: user1  } = this.props;
         const { movies  } = this.props;
-        console.log("PROPS ->", this.props.user);
+        //console.log("PROPS ->", this.props.user);
         return(/*#__PURE__*/ _jsxDevRuntime.jsxDEV(_reactRouterDom.BrowserRouter, {
             children: [
                 /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_navbar.Menubar, {
                     user: user1
                 }, void 0, false, {
                     fileName: "src/components/main-view/main-view.jsx",
-                    lineNumber: 68,
+                    lineNumber: 67,
                     columnNumber: 9
                 }, this),
                 /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_reactBootstrap.Container, {
@@ -22901,7 +22900,7 @@ class MainView extends _reactDefault.default.Component {
                                 }
                             }, void 0, false, {
                                 fileName: "src/components/main-view/main-view.jsx",
-                                lineNumber: 71,
+                                lineNumber: 70,
                                 columnNumber: 13
                             }, this),
                             /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_reactRouterDom.Route, {
@@ -22917,7 +22916,7 @@ class MainView extends _reactDefault.default.Component {
                                 }
                             }, void 0, false, {
                                 fileName: "src/components/main-view/main-view.jsx",
-                                lineNumber: 86,
+                                lineNumber: 85,
                                 columnNumber: 13
                             }, this),
                             /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_reactRouterDom.Route, {
@@ -22942,7 +22941,7 @@ class MainView extends _reactDefault.default.Component {
                                 }
                             }, void 0, false, {
                                 fileName: "src/components/main-view/main-view.jsx",
-                                lineNumber: 98,
+                                lineNumber: 97,
                                 columnNumber: 13
                             }, this),
                             /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_reactRouterDom.Route, {
@@ -22967,7 +22966,7 @@ class MainView extends _reactDefault.default.Component {
                                 }
                             }, void 0, false, {
                                 fileName: "src/components/main-view/main-view.jsx",
-                                lineNumber: 118,
+                                lineNumber: 117,
                                 columnNumber: 13
                             }, this),
                             /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_reactRouterDom.Route, {
@@ -22992,7 +22991,7 @@ class MainView extends _reactDefault.default.Component {
                                 }
                             }, void 0, false, {
                                 fileName: "src/components/main-view/main-view.jsx",
-                                lineNumber: 142,
+                                lineNumber: 141,
                                 columnNumber: 13
                             }, this),
                             /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_reactRouterDom.Route, {
@@ -23015,24 +23014,24 @@ class MainView extends _reactDefault.default.Component {
                                 }
                             }, void 0, false, {
                                 fileName: "src/components/main-view/main-view.jsx",
-                                lineNumber: 166,
+                                lineNumber: 165,
                                 columnNumber: 13
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "src/components/main-view/main-view.jsx",
-                        lineNumber: 70,
+                        lineNumber: 69,
                         columnNumber: 11
                     }, this)
                 }, void 0, false, {
                     fileName: "src/components/main-view/main-view.jsx",
-                    lineNumber: 69,
+                    lineNumber: 68,
                     columnNumber: 9
                 }, this)
             ]
         }, void 0, true, {
             fileName: "src/components/main-view/main-view.jsx",
-            lineNumber: 67,
+            lineNumber: 66,
             columnNumber: 7
         }, this));
     }
@@ -23102,7 +23101,7 @@ module.exports = axios;
 // Allow use of default import syntax in TypeScript
 module.exports.default = axios;
 
-},{"./utils":"5By4s","./helpers/bind":"haRQb","./core/Axios":"cpqD8","./core/mergeConfig":"b85oP","./defaults":"lTJJ4","./cancel/Cancel":"kjMy2","./cancel/CancelToken":"45wzn","./cancel/isCancel":"a0VmF","./env/data":"h29L9","./helpers/spread":"dyQ8N","./helpers/isAxiosError":"eyiLq"}],"5By4s":[function(require,module,exports) {
+},{"./utils":"5By4s","./helpers/bind":"haRQb","./core/Axios":"cpqD8","./core/mergeConfig":"b85oP","./defaults":"hXfHM","./cancel/Cancel":"kjMy2","./cancel/CancelToken":"45wzn","./cancel/isCancel":"a0VmF","./env/data":"h29L9","./helpers/spread":"dyQ8N","./helpers/isAxiosError":"eyiLq"}],"5By4s":[function(require,module,exports) {
 'use strict';
 var bind = require('./helpers/bind');
 // utils is a library of generic helper functions non-specific to axios
@@ -23641,10 +23640,10 @@ var Cancel = require('../cancel/Cancel');
     });
 };
 
-},{"./../utils":"5By4s","./transformData":"eRqJY","../cancel/isCancel":"a0VmF","../defaults":"lTJJ4","../cancel/Cancel":"kjMy2"}],"eRqJY":[function(require,module,exports) {
+},{"./../utils":"5By4s","./transformData":"eRqJY","../cancel/isCancel":"a0VmF","../defaults":"hXfHM","../cancel/Cancel":"kjMy2"}],"eRqJY":[function(require,module,exports) {
 'use strict';
 var utils = require('./../utils');
-var defaults = require('./../defaults');
+var defaults = require('../defaults');
 /**
  * Transform the data for a request or a response
  *
@@ -23660,12 +23659,13 @@ var defaults = require('./../defaults');
     return data;
 };
 
-},{"./../utils":"5By4s","./../defaults":"lTJJ4"}],"lTJJ4":[function(require,module,exports) {
+},{"./../utils":"5By4s","../defaults":"hXfHM"}],"hXfHM":[function(require,module,exports) {
 'use strict';
 var process = require("process");
-var utils = require('./utils');
-var normalizeHeaderName = require('./helpers/normalizeHeaderName');
-var enhanceError = require('./core/enhanceError');
+var utils = require('../utils');
+var normalizeHeaderName = require('../helpers/normalizeHeaderName');
+var enhanceError = require('../core/enhanceError');
+var transitionalDefaults = require('./transitional');
 var DEFAULT_CONTENT_TYPE = {
     'Content-Type': 'application/x-www-form-urlencoded'
 };
@@ -23675,9 +23675,9 @@ function setContentTypeIfUnset(headers, value) {
 function getDefaultAdapter() {
     var adapter;
     if (typeof XMLHttpRequest !== 'undefined') // For browsers use XHR adapter
-    adapter = require('./adapters/xhr');
+    adapter = require('../adapters/xhr');
     else if (typeof process !== 'undefined' && Object.prototype.toString.call(process) === '[object process]') // For node use HTTP adapter
-    adapter = require('./adapters/http');
+    adapter = require('../adapters/http');
     return adapter;
 }
 function stringifySafely(rawValue, parser, encoder) {
@@ -23690,11 +23690,7 @@ function stringifySafely(rawValue, parser, encoder) {
     return (encoder || JSON.stringify)(rawValue);
 }
 var defaults = {
-    transitional: {
-        silentJSONParsing: true,
-        forcedJSONParsing: true,
-        clarifyTimeoutError: false
-    },
+    transitional: transitionalDefaults,
     adapter: getDefaultAdapter(),
     transformRequest: [
         function transformRequest(data, headers) {
@@ -23764,7 +23760,7 @@ utils.forEach([
 });
 module.exports = defaults;
 
-},{"process":"d5jf4","./utils":"5By4s","./helpers/normalizeHeaderName":"adBZo","./core/enhanceError":"itUQr","./adapters/xhr":"ldm57","./adapters/http":"ldm57"}],"d5jf4":[function(require,module,exports) {
+},{"process":"d5jf4","../utils":"5By4s","../helpers/normalizeHeaderName":"adBZo","../core/enhanceError":"itUQr","./transitional":"lM32f","../adapters/xhr":"ldm57","../adapters/http":"ldm57"}],"d5jf4":[function(require,module,exports) {
 // shim for using process in browser
 var process = module.exports = {
 };
@@ -23964,6 +23960,14 @@ module.exports = function normalizeHeaderName(headers, normalizedName) {
     return error;
 };
 
+},{}],"lM32f":[function(require,module,exports) {
+'use strict';
+module.exports = {
+    silentJSONParsing: true,
+    forcedJSONParsing: true,
+    clarifyTimeoutError: false
+};
+
 },{}],"ldm57":[function(require,module,exports) {
 'use strict';
 var utils = require('./../utils');
@@ -23974,7 +23978,7 @@ var buildFullPath = require('../core/buildFullPath');
 var parseHeaders = require('./../helpers/parseHeaders');
 var isURLSameOrigin = require('./../helpers/isURLSameOrigin');
 var createError = require('../core/createError');
-var defaults = require('../defaults');
+var transitionalDefaults = require('../defaults/transitional');
 var Cancel = require('../cancel/Cancel');
 module.exports = function xhrAdapter(config) {
     return new Promise(function dispatchXhrRequest(resolve, reject) {
@@ -24053,7 +24057,7 @@ module.exports = function xhrAdapter(config) {
         // Handle timeout
         request.ontimeout = function handleTimeout() {
             var timeoutErrorMessage = config.timeout ? 'timeout of ' + config.timeout + 'ms exceeded' : 'timeout exceeded';
-            var transitional = config.transitional || defaults.transitional;
+            var transitional = config.transitional || transitionalDefaults;
             if (config.timeoutErrorMessage) timeoutErrorMessage = config.timeoutErrorMessage;
             reject(createError(timeoutErrorMessage, config, transitional.clarifyTimeoutError ? 'ETIMEDOUT' : 'ECONNABORTED', request));
             // Clean up request
@@ -24100,7 +24104,7 @@ module.exports = function xhrAdapter(config) {
     });
 };
 
-},{"./../utils":"5By4s","./../core/settle":"dD9aC","./../helpers/cookies":"4WJjt","./../helpers/buildURL":"3bwC2","../core/buildFullPath":"1I5TW","./../helpers/parseHeaders":"kqDd5","./../helpers/isURLSameOrigin":"lxXtv","../core/createError":"5nVS9","../defaults":"lTJJ4","../cancel/Cancel":"kjMy2"}],"dD9aC":[function(require,module,exports) {
+},{"./../utils":"5By4s","./../core/settle":"dD9aC","./../helpers/cookies":"4WJjt","./../helpers/buildURL":"3bwC2","../core/buildFullPath":"1I5TW","./../helpers/parseHeaders":"kqDd5","./../helpers/isURLSameOrigin":"lxXtv","../core/createError":"5nVS9","../cancel/Cancel":"kjMy2","../defaults/transitional":"lM32f"}],"dD9aC":[function(require,module,exports) {
 'use strict';
 var createError = require('./createError');
 /**
@@ -24489,7 +24493,7 @@ module.exports = {
 
 },{"../env/data":"h29L9"}],"h29L9":[function(require,module,exports) {
 module.exports = {
-    "version": "0.26.0"
+    "version": "0.26.1"
 };
 
 },{}],"45wzn":[function(require,module,exports) {
@@ -36608,13 +36612,14 @@ function setMovies(value) {
     };
 }
 function setFilter(value) {
-    //console.log(' setFilter action works well')
+    //console.log(' #setFilter action works well')
     return {
         type: SET_FILTER,
         value
     };
 }
 function setUser(value) {
+    //console.log('SET_USER action triggered')
     return {
         type: SET_USER,
         value
@@ -37312,8 +37317,8 @@ function movies(state = [], action) {
             return state;
     }
 }
-function user(state = [], action) {
-    console.log('@@@', 'set users works');
+function user(state = '', action) {
+    //console.log('@@@','set users works');
     switch(action.type){
         case _actions.SET_USER:
             return action.value;

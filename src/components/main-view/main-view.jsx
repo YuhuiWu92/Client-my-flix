@@ -24,7 +24,6 @@ class MainView extends React.Component {
     let accessToken = localStorage.getItem("token");
     if (accessToken !== null) {
       this.props.setUser(localStorage.getItem("user"));
-      //get violatest
       this.getMovies(accessToken);
     }
   }
@@ -61,7 +60,7 @@ class MainView extends React.Component {
   render() {
     const { user } = this.props;
     const { movies } = this.props;
-    console.log("PROPS ->", this.props.user);
+    //console.log("PROPS ->", this.props.user);
 
     return (
       <Router>
