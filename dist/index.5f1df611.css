@@ -3,6 +3,9 @@
   padding-right: 20px;
 }
 
+.card-img-top {
+  width: 50% !important;
+}
 .my-flix {
   color: steelblue;
 }
