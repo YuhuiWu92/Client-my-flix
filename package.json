@@ -2,7 +2,7 @@
     "name": "client-my-flix",
     "version": "1.0.0",
     "description": "this is client side for my flix app.",
-    "source": "src/index.html",
+    "main": "src/index.html",
     "scripts": {
         "start": "parcel src/index.html",
         "build": "parcel build"
