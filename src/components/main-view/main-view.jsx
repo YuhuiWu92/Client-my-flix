@@ -176,10 +176,11 @@ class MainView extends React.Component {
               render={({ history, match }) => {
                 if (!user)
                   return (
-                    <LoginView onLoggedIn={(user) => this.onLoggedIn(user)} />
+                    <Col>
+                      <LoginView onLoggedIn={(user) => this.onLoggedIn(user)} />
+                    </Col>
                   );
-                if (movies.length === 0)
-                  return <div className="main-view"></div>;
+                if (movies.length === 0) return <div className="main-view" />;
                 return (
                   <ProfileView
                     history={history}
@@ -200,7 +201,5 @@ class MainView extends React.Component {
 let mapStateToProps = (state) => {
   return { movie: state.movies };
 };
-/* let mapDispatchToProps=state=>{
-  
-} */
-connect(mapStateToProps, { setMovies })(MainView);
+
+export default connect(mapStateToProps, { setMovies })(MainView);
