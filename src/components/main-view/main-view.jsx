@@ -3,9 +3,7 @@ import axios from "axios";
 import { connect } from "react-redux";
 
 import { BrowserRouter as Router, Route, Redirect } from "react-router-dom";
-import { setMovies } from "../../actions/actions";
-//import { MovieCard } from "../movie-card/movie-card";
-// we haven't written this one yet
+import { setMovies, setUser } from "../../actions/actions";
 import MoviesList from "../movies-list/movies-list";
 
 import { MovieView } from "../movie-view/movie-view";
@@ -20,27 +18,20 @@ import { Row, Col, Container, Button } from "react-bootstrap";
 class MainView extends React.Component {
   constructor() {
     super();
-    this.state = {
-      user: null,
-    };
   }
 
   componentDidMount() {
     let accessToken = localStorage.getItem("token");
     if (accessToken !== null) {
-      this.setState({
-        user: localStorage.getItem("user"),
-      });
+      this.props.setUser(localStorage.getItem("user"));
+      //get violatest
       this.getMovies(accessToken);
     }
   }
 
   onLoggedIn(authData) {
-    console.log(authData);
-    this.setState({
-      user: authData.user.Username,
-    });
-
+    console.log("@", authData);
+    this.props.setUser("user", authData.user.Username);
     localStorage.setItem("token", authData.token);
     localStorage.setItem("user", authData.user.Username);
     this.getMovies(authData.token);
@@ -68,8 +59,9 @@ class MainView extends React.Component {
       });
   }
   render() {
-    const { user } = this.state;
+    const { user } = this.props;
     const { movies } = this.props;
+    console.log("PROPS ->", this.props.user);
 
     return (
       <Router>
@@ -199,7 +191,14 @@ class MainView extends React.Component {
 }
 
 let mapStateToProps = (state) => {
-  return { movie: state.movies };
+  //console.log("&&", state.movies);
+  return { movies: state.movies, user: state.user };
 };
 
-export default connect(mapStateToProps, { setMovies })(MainView);
+// Event that changes State
+// ACTION -> REDUCER -> (NEWSTATE & REPLACE OLD STATE)
+// If State modified in the store
+// All the component subscribed to the state in the store
+// Will be rerendered because (we assign state from store to props (using MapStateToProps()))
+
+export default connect(mapStateToProps, { setMovies, setUser })(MainView);
