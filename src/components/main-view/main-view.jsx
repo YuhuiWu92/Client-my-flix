@@ -29,7 +29,7 @@ class MainView extends React.Component {
   }
 
   onLoggedIn(authData) {
-    console.log("@", authData);
+    console.log("authData:", authData);
     this.props.setUser("user", authData.user.Username);
     localStorage.setItem("token", authData.token);
     localStorage.setItem("user", authData.user.Username);
@@ -193,11 +193,5 @@ let mapStateToProps = (state) => {
   //console.log("&&", state.movies);
   return { movies: state.movies, user: state.user };
 };
-
-// Event that changes State
-// ACTION -> REDUCER -> (NEWSTATE & REPLACE OLD STATE)
-// If State modified in the store
-// All the component subscribed to the state in the store
-// Will be rerendered because (we assign state from store to props (using MapStateToProps()))
 
 export default connect(mapStateToProps, { setMovies, setUser })(MainView);
