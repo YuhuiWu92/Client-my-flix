@@ -24,7 +24,7 @@ function movies(state = [], action) {
 }
 
 function user(state = '', action) {
-  //console.log('@@@','set users works');
+ 
   switch (action.type) {
     case SET_USER:
       return action.value;
