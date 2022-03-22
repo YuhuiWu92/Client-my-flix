@@ -2,6 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import { Button, Card } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import "./movie-card.scss";
 
 export class MovieCard extends React.Component {
   render() {
@@ -9,13 +10,23 @@ export class MovieCard extends React.Component {
 
     return (
       <Card>
-        <Card.Img variant="top" src={movie.ImagePath} />
+        <Card.Img variant="top" src={movie.ImagePath} className="cardImg" />
         <Card.Body>
           <Card.Title>{movie.Title}</Card.Title>
           <Card.Text>{movie.Description}</Card.Text>
           <Link to={`/movies/${movie._id}`}>
-            <Button variant="link">Open</Button>
+            <Button variant="outline-success">Open</Button>
           </Link>
+
+          {/* <Button
+            className="unfavoriteMovieButton"
+            variant="outline-warning"
+            onClick={() => {
+              this.onRemoveFavorite(movie._id);
+            }}
+          >
+            Remove Favorite
+          </Button> */}
         </Card.Body>
       </Card>
     );

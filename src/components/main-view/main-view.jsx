@@ -1,8 +1,11 @@
 import React from "react";
 import axios from "axios";
-import { BrowserRouter as Router, Route, Redirect } from "react-router-dom";
+import { connect } from "react-redux";
 
-import { MovieCard } from "../movie-card/movie-card";
+import { BrowserRouter as Router, Route, Redirect } from "react-router-dom";
+import { setMovies, setUser } from "../../actions/actions";
+import MoviesList from "../movies-list/movies-list";
+
 import { MovieView } from "../movie-view/movie-view";
 import { LoginView } from "../login-view/login-view";
 import { Menubar } from "../navbar/navbar";
@@ -10,33 +13,24 @@ import { DirectorView } from "../director-view/director-view";
 import { GenreView } from "../genre-view/genre-view";
 import { RegistrationView } from "../registration-view/registration-view";
 import { ProfileView } from "../profile-view/profile-view";
-import { Row, Col, Container } from "react-bootstrap";
+import { Row, Col, Container, Button } from "react-bootstrap";
 
-export default class MainView extends React.Component {
+class MainView extends React.Component {
   constructor() {
     super();
-    this.state = {
-      movies: [],
-      user: null,
-    };
   }
 
   componentDidMount() {
     let accessToken = localStorage.getItem("token");
     if (accessToken !== null) {
-      this.setState({
-        user: localStorage.getItem("user"),
-      });
+      this.props.setUser(localStorage.getItem("user"));
       this.getMovies(accessToken);
     }
   }
 
   onLoggedIn(authData) {
-    console.log(authData);
-    this.setState({
-      user: authData.user.Username,
-    });
-
+    console.log("@", authData);
+    this.props.setUser("user", authData.user.Username);
     localStorage.setItem("token", authData.token);
     localStorage.setItem("user", authData.user.Username);
     this.getMovies(authData.token);
@@ -56,17 +50,17 @@ export default class MainView extends React.Component {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((response) => {
+        this.props.setMovies(response.data);
         // Assign the result to the state
-        this.setState({
-          movies: response.data,
-        });
       })
       .catch(function (error) {
         console.log(error);
       });
   }
   render() {
-    const { movies, user } = this.state;
+    const { user } = this.props;
+    const { movies } = this.props;
+    //console.log("PROPS ->", this.props.user);
 
     return (
       <Router>
@@ -84,11 +78,7 @@ export default class MainView extends React.Component {
                     </Col>
                   );
                 if (movies.length === 0) return <div className="main-view" />;
-                return movies.map((m) => (
-                  <Col md={3} key={m._id}>
-                    <MovieCard movie={m} />
-                  </Col>
-                ));
+                return <MoviesList movies={movies} />;
               }}
             />
             {/* Route to register */}
@@ -171,39 +161,24 @@ export default class MainView extends React.Component {
                 );
               }}
             />
-
             {/* Route to ProfileView */}
             <Route
               path={`/users/:username`}
               render={({ history, match }) => {
                 if (!user)
                   return (
-                    <LoginView onLoggedIn={(user) => this.onLoggedIn(user)} />
+                    <Col>
+                      <LoginView onLoggedIn={(user) => this.onLoggedIn(user)} />
+                    </Col>
                   );
-                if (movies.length === 0)
-                  return <div className="main-view"></div>;
+                if (movies.length === 0) return <div className="main-view" />;
                 return (
                   <ProfileView
                     history={history}
                     movies={movies}
-                    user={user === match.params.username}
+                    user={user}
+                    onBackClick={() => history.goBack()}
                   />
-                );
-              }}
-            />
-
-            {/* Route to update ProfileView */}
-            <Route
-              path={`/users/${user}`}
-              render={({ match, history }) => {
-                if (!user) return <Redirect to="/" />;
-                return (
-                  <Col>
-                    <UserUpdate
-                      user={user}
-                      onBackClick={() => history.goBack()}
-                    />
-                  </Col>
                 );
               }}
             />
@@ -213,3 +188,16 @@ export default class MainView extends React.Component {
     );
   }
 }
+
+let mapStateToProps = (state) => {
+  //console.log("&&", state.movies);
+  return { movies: state.movies, user: state.user };
+};
+
+// Event that changes State
+// ACTION -> REDUCER -> (NEWSTATE & REPLACE OLD STATE)
+// If State modified in the store
+// All the component subscribed to the state in the store
+// Will be rerendered because (we assign state from store to props (using MapStateToProps()))
+
+export default connect(mapStateToProps, { setMovies, setUser })(MainView);

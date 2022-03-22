@@ -4,19 +4,49 @@ import { Container, Row, Col, Button, Card, CardGroup } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
 import "./movie-view.scss";
+import axios from "axios";
 
 export class MovieView extends React.Component {
+  constructor(props) {
+    super(props);
+    FavoriteMovies: [];
+  }
   // uncommen this to check the key presses
-
   keypressCallback(event) {
     console.log(event.key);
   }
 
   componentWillUnmount() {
-    document.removeEventListener("keypress", this.keypressCallback);
+    //document.removeEventListener("keypress", this.keypressCallback);
+    //console.log("!", users.FavoriteMovies);
   }
+
+  handleAddToFav() {
+    const username = localStorage.getItem("user");
+    const token = localStorage.getItem("token");
+    const movie = this.props.movie;
+
+    axios
+      .post(
+        `https://my-film-flix.herokuapp.com/users/${username}/movies/${movie._id}`,
+        null,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      )
+      .then((r) => {
+        alert(`${movie.Title} is successfully added to your Favorite list`);
+      })
+      .catch((e) => {
+        console.log("Error while adding movie to favorite", e);
+        alert("Something went wrong!");
+      });
+  }
+
   render() {
-    const { movie, onBackClick } = this.props;
+    const { movie, onBackClick, addFav } = this.props;
 
     return (
       <Container fluid className="moviesContainer">
@@ -45,9 +75,15 @@ export class MovieView extends React.Component {
                 <Button variant="link">{movie.Director.Name}</Button>
               </Link>
             </div>
-            <button variant="outline-light" onClick={() => onBackClick()}>
+            <Button variant="outline-secondary" onClick={() => onBackClick()}>
               Back
-            </button>
+            </Button>
+            <Button
+              variant="outline-danger"
+              onClick={() => this.handleAddToFav()}
+            >
+              Add to Favorite
+            </Button>
           </Col>
         </Row>
       </Container>
