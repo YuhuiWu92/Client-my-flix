@@ -54,11 +54,8 @@ export function RegistrationView(props) {
         .then((response) => {
           const data = response.data;
           console.log(data);
-          let isLogin = confirm("Registration successful, login now?");
-          if (isLogin) {
-            <Redirect to="/login" />;
-          }
-          window.open("/"); //the page will open on the same page.
+          alert("Registration successful");
+          window.location.href = "/"; //the page will open on the same page.
         })
         .catch((e) => {
           console.error(response);
