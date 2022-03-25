@@ -1,10 +1,12 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
 import axios from "axios";
+import { Redirect } from "react-router-dom";
 
 import { Form, Button, Container, Row, Col } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import "./registration-view.scss";
+import { LoginView } from "../login-view/login-view";
 
 export function RegistrationView(props) {
   const [username, setUsername] = useState("");
@@ -52,7 +54,10 @@ export function RegistrationView(props) {
         .then((response) => {
           const data = response.data;
           console.log(data);
-          alert("Registration successful, please login!");
+          let isLogin = confirm("Registration successful, login now?");
+          if (isLogin) {
+            <Redirect to="/login" />;
+          }
           window.open("/"); //the page will open on the same page.
         })
         .catch((e) => {

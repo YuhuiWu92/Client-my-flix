@@ -57551,6 +57551,8 @@ var _reactRouterDom = require("react-router-dom");
 
 require("./registration-view.scss");
 
+var _loginView = require("../login-view/login-view");
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _getRequireWildcardCache(nodeInterop) { if (typeof WeakMap !== "function") return null; var cacheBabelInterop = new WeakMap(); var cacheNodeInterop = new WeakMap(); return (_getRequireWildcardCache = function (nodeInterop) { return nodeInterop ? cacheNodeInterop : cacheBabelInterop; })(nodeInterop); }
@@ -57648,7 +57650,14 @@ function RegistrationView(props) {
       }).then(function (response) {
         var data = response.data;
         console.log(data);
-        alert("Registration successful, please login!");
+        var isLogin = confirm("Registration successful, login now?");
+
+        if (isLogin) {
+          window.open("/register");
+        } else {
+          window.open("/");
+        }
+
         window.open("/"); //the page will open on the same page.
       }).catch(function (e) {
         console.error(response);
@@ -57724,7 +57733,7 @@ RegistrationView.propTypes = {
     Email: _propTypes.default.string.isRequired
   })
 };
-},{"react":"../node_modules/react/index.js","prop-types":"../node_modules/prop-types/index.js","axios":"../node_modules/axios/index.js","react-bootstrap":"../node_modules/react-bootstrap/esm/index.js","react-router-dom":"../node_modules/react-router-dom/esm/react-router-dom.js","./registration-view.scss":"components/registration-view/registration-view.scss"}],"components/profile-view/profile-view.scss":[function(require,module,exports) {
+},{"react":"../node_modules/react/index.js","prop-types":"../node_modules/prop-types/index.js","axios":"../node_modules/axios/index.js","react-bootstrap":"../node_modules/react-bootstrap/esm/index.js","react-router-dom":"../node_modules/react-router-dom/esm/react-router-dom.js","./registration-view.scss":"components/registration-view/registration-view.scss","../login-view/login-view":"components/login-view/login-view.jsx"}],"components/profile-view/profile-view.scss":[function(require,module,exports) {
 var reloadCSS = require('_css_loader');
 
 module.hot.dispose(reloadCSS);
@@ -58431,7 +58440,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "52101" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "53837" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
