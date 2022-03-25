@@ -1,8 +1,8 @@
-import { combineReducers } from 'redux';
+import { combineReducers } from "redux";
 
-import { SET_FILTER, SET_MOVIES, SET_USER } from '../actions/actions';
+import { SET_FILTER, SET_MOVIES, SET_USER } from "../actions/actions";
 
-function visibilityFilter(state = '', action) {
+function visibilityFilter(state = "", action) {
   //console.log('???','visibilityFilter reducer works');
   switch (action.type) {
     case SET_FILTER:
@@ -14,7 +14,7 @@ function visibilityFilter(state = '', action) {
 
 function movies(state = [], action) {
   //console.log('$','set movie reducer works');
-
+  // since we use movies.length,is should be an arry
   switch (action.type) {
     case SET_MOVIES:
       return action.value;
@@ -23,8 +23,7 @@ function movies(state = [], action) {
   }
 }
 
-function user(state = '', action) {
- 
+function user(state = "", action) {
   switch (action.type) {
     case SET_USER:
       return action.value;
@@ -33,10 +32,6 @@ function user(state = '', action) {
   }
 }
 
-const moviesApp=combineReducers (
-  {visibilityFilter,
-    movies,
-    user
-  });
+const moviesApp = combineReducers({ visibilityFilter, movies, user });
 
 export default moviesApp;
